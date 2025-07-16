@@ -1,1 +1,2 @@
 # PortablePython
+欢迎使用PortablePython，这是一个便携的Python版本，可以在现代的Windows_amd64版本上运行。详细用法请见Wiki。
