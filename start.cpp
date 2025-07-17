@@ -36,8 +36,8 @@ bool RunCommandNoWindow(const string& command) {
 }
 
 int main() {
-	HWND hWnd = GetConsoleWindow();
-	ShowWindow(hWnd, SW_HIDE);
+    HWND hWnd = GetConsoleWindow();
+    ShowWindow(hWnd, SW_HIDE);
 	
 	// 获取当前工作目录
     char buffer[MAX_PATH];
@@ -47,8 +47,7 @@ int main() {
     
     //设置当前进程环境变量（立即生效）
     SetEnvironmentVariableA(envVarName, buffer);
-    
-	RunCommandNoWindow("pythonw.exe PortablePython.pyw");
+    RunCommandNoWindow("pythonw.exe PortablePython.pyw");
 
     return 0;
 }
