@@ -1,2 +1,2 @@
-# PortablePython
-欢迎使用PortablePython，这是一个便携的Python版本，可以在现代的Windows版本上运行。详细用法请见Wiki。
+# PortablePythonBuilder
+欢迎使用PortablePythonBuilder，这是一个便携Python的创建器，可以在现代的Windows版本上运行。详细用法请见Wiki。
