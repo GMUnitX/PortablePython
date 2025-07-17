@@ -46,7 +46,7 @@ class PortablePythonBuilder(tk.Tk):
         self.progress.pack(fill="x", padx=10, pady=5)
 
         # 状态标签
-        self.status_label = ttk.Label(self, text="等待选择路径...", background="white")
+        self.status_label = ttk.Label(self, text="等待选择路径...")
         self.status_label.pack(pady=5)
 
         # 下一步按钮（右下角）
