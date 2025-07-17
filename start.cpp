@@ -8,9 +8,11 @@ bool RunCommandNoWindow(const string& command) {
     ZeroMemory(&si, sizeof(si));
     ZeroMemory(&pi, sizeof(pi));
 
+    // 设置窗口不可见
     si.dwFlags = STARTF_USESHOWWINDOW;
     si.wShowWindow = SW_HIDE;
 
+    // 创建进程
     CreateProcessA(
         nullptr,
         const_cast<char*>(command.c_str()),
@@ -23,24 +25,21 @@ bool RunCommandNoWindow(const string& command) {
         &si,
         &pi);
 
+    // 等待进程结束
     WaitForSingleObject(pi.hProcess, INFINITE);
+
+    // 关闭句柄
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
 
     return true;
 }
 
-string ReadFileToString(const string& filename) {
-    ifstream file(filename, ios::binary);
-    return string((istreambuf_iterator<char>(file)),
-                  istreambuf_iterator<char>());
-}
-
 int main() {
-    HWND hWnd = GetConsoleWindow();
-    ShowWindow(hWnd, SW_HIDE);
-    
-    // 获取当前工作目录
+	HWND hWnd = GetConsoleWindow();
+	ShowWindow(hWnd, SW_HIDE);
+	
+	// 获取当前工作目录
     char buffer[MAX_PATH];
     GetCurrentDirectoryA(MAX_PATH, buffer); 
     // 设置环境变量名称
@@ -48,19 +47,8 @@ int main() {
     
     //设置当前进程环境变量（立即生效）
     SetEnvironmentVariableA(envVarName, buffer);
-
-    string fileToRun = ReadFileToString("startfile.txt");
-    fileToRun.erase(fileToRun.find_last_not_of(" \r\n") + 1);
-
-    string pythonExe;
-    if (fileToRun.size() >= 4 && fileToRun.substr(fileToRun.size() - 4) == ".pyw") {
-        pythonExe = "pythonw.exe";
-    } else {
-        pythonExe = "python.exe";
-    }
-
-    string command = pythonExe + " \"" + fileToRun + "\"";
-    RunCommandNoWindow(command);
+    
+	RunCommandNoWindow("pythonw.exe PortablePython.pyw");
 
     return 0;
 }
