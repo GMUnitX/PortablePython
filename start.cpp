@@ -39,7 +39,7 @@ int main() {
     HWND hWnd = GetConsoleWindow();
     ShowWindow(hWnd, SW_HIDE);
 	
-	// 获取当前工作目录
+    // 获取当前工作目录
     char buffer[MAX_PATH];
     GetCurrentDirectoryA(MAX_PATH, buffer); 
     // 设置环境变量名称
